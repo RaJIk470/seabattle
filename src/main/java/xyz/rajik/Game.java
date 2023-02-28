@@ -174,10 +174,14 @@ public class Game {
             Boolean isCorrectPoint = false;
             Point point = null;
             while (!isCorrectPoint) {
-                point = new Point(userInput.nextInt(), userInput.nextInt());
-                isCorrectPoint = isCorrectPoint(point);
-                if (!isCorrectPoint)
-                    System.out.println("U've entered incorrect point, try again");
+                try {
+                    point = new Point(userInput.nextInt(), userInput.nextInt());
+                    isCorrectPoint = isCorrectPoint(point);
+                    if (!isCorrectPoint)
+                        System.out.println("U've entered incorrect point, try again");
+                } catch (Exception e) {
+                    System.out.println("Invalid input");
+                }
             }
             out.writeObject(point);
             CellType cellType = (CellType) in.readObject();
